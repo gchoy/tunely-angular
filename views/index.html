@@ -88,8 +88,32 @@
         </div>
       </div>
       <div ng-repeat="album in albumsIndexCtrl.albums |  orderBy:'artistName' | filter:searchText">
-      <p>Name: {{album.name}} Artist Name: {{album.artistName}} ReleaseDate: {{album.releaseDate}} Genres: {{album.genres}}</p>
+      <div>
+        <h4 class='inline-header'>Album Name:</h4>
+        <span ng-hide="editing">{{album.name}}</span>
+        <input ng-show="editing" ng-model="album.name" type="text" class="form-control input-md">
+      </div>
+      <div>
+        <h4 class='inline-header'>Artist Name:</h4>
+        <span ng-hide="editing">{{album.artistName}}</span>
+        <input ng-show="editing" ng-model="album.artistName" type="text" class="form-control input-md">
+      </div>
+      <div>
+        <h4 class='inline-header'>Released date:</h4>
+        <span ng-hide="editing">{{album.releaseDate}}</span>
+        <input ng-show="editing" ng-model="album.releaseDate" type="text" class="form-control input-md">
+      </div>
+      <div>
+
+        <h4 class='inline-header'>Genres:</h4>
+        <span ng-hide="editing">{{album.genres}}</span>
+        <input ng-show="editing" ng-model="album.genres" type="text" class="form-control input-md">
+
+      </div>
       <button class='btn btn-danger' ng-click="albumsIndexCtrl.deleteAlbum(album)">Delete Album</button>
+      <button class='btn btn-info' ng-hide="editing" ng-click="editing = true">Edit Album</button>
+      <button class='btn btn-success' ng-show="editing" ng-click="albumsIndexCtrl.editAlbum(album); editing = false">Save Changes</button>
+
       </div>
       <!--<input type="text" class="form-control" placeholder="New album name" ng-model="albumsIndexCtrl.newAlbum.name">
       <input type="text" class="form-control" placeholder="New album name" ng-model="albumsIndexCtrl.newAlbum.artistName">-->
